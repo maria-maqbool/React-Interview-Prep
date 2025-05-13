@@ -1,112 +1,22 @@
-
-# What is jsx? how babel compiles it?
-JSX (JavaScript XML) is a syntax extension for JavaScript used in React.
-
-It lets you write HTML-like code inside JavaScript.
-
-**Example:**
-```const element = <h1>Hello, World!</h1>;```
-
-**Without JSX, you would write:**
-```const element = React.createElement('h1', null, 'Hello, World!');```
-
-So, JSX makes your React code more readable and expressive by letting you write UI markup directly inside JS.
-
-**JSX and React are two separate things. They’re often used together, but you can use them independently of each other. JSX is a syntax extension, while React is a JavaScript library.**
-
-**Important: Browsers cannot understand JSX directly — that’s where Babel comes in.**
-
-**Q1: What is JSX?
-Q2: Is JSX a part of React?
-Q3: Why can't we write class inside our JSX markup**
-
-## How does Babel compile JSX?
-Babel is a JavaScript compiler that converts modern JavaScript (ES6+) and JSX into code that browsers can understand.
-
-
-✅ Step 1 — You write JSX:
-```const element = <h1>Hello, World!</h1>;```
-
-✅ Step 2 — Babel transforms it into React code:
-```const element = React.createElement('h1', null, 'Hello, World!');```
-
-✅ Step 3 — React creates a virtual DOM object:
-```
-{
-  type: 'h1',
-  props: {
-    children: 'Hello, World!'
-  }
-}
-```
-
-✅ Step 4 — React renders it into the actual DOM.
-
-## JSX Rules:
-JSX looks simple, but it has some important rules:
-
-**1️⃣ Return only one parent element**
-JSX must have one root element wrapping everything:
-```
-// ✅ Correct
-return (
-  <div>
-    <h1>Hello</h1>
-    <p>World</p>
-  </div>
-);
-```
-
-```
-// ❌ Incorrect
-return (
-  <h1>Hello</h1>
-  <p>World</p>
-);
-```
-
-If you don’t want extra ```<div>```, you can use React fragments:
-```return (
-  <>
-    <h1>Hello</h1>
-    <p>World</p>
-  </>
-);
-```
-
-**2️⃣ Use className instead of class**
-In JSX, class is a reserved JS word, so you write:
-```<div className="container">Hello</div>```
-
-
-**3️⃣ Expressions go inside {}**
-You can put JavaScript expressions inside JSX using curly braces:
-
-```
-const name = 'John';
-return <h1>Hello, {name}</h1>;
-```
-
-**4️⃣ Self-close empty tags**
-JSX tags must be closed:
-```
-<img src="image.png" />
-```
-
-
-# Virtual DOM
+# Q2: What is virtual DOM?
+## Virtual DOM
 The Virtual DOM is a lightweight JavaScript representation (or copy) of the real DOM in the browser.
 
 Instead of directly manipulating the real DOM when your app’s data changes, React first updates this virtual DOM. Once the changes are figured out, React calculates the minimum number of real DOM updates needed and applies them efficiently.
 
+---
+## Q3: What is the difference between virtual DOM and shadow DOM?
 
-**Q1: What makes React so powerful?
- Q2: What is virtual DOM?
- Q3: What is the difference between virtual DOM and shadow DOM?**
+Despite their similar names, the Shadow DOM and the Virtual DOM are fundamentally different concepts used for different purposes. The Shadow DOM is a browser-native feature (part of the Web Components standard) that provides DOM encapsulation, whereas the Virtual DOM is a JavaScript abstraction used by UI libraries to optimize rendering. In other words, Shadow DOM is about hiding and isolating a DOM subtree within an element, while Virtual DOM is about representing the UI in memory and minimizing real-DOM updates
+legacy.reactjs.org
+imperva.com
+. For example, React’s documentation explicitly states that “the Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components,” while the “virtual DOM is a concept implemented by libraries in JavaScript”
+legacy.reactjs.org.
+
+---
 
 
-
-### Why do we need the Virtual DOM?
+## Why do we need the Virtual DOM?
 The real DOM is slow to update because:
 
 ✅ It’s a complex tree of elements
@@ -115,7 +25,8 @@ The real DOM is slow to update because:
 
 The virtual DOM helps minimize expensive DOM operations, making apps faster and smoother.
 
-### 🔧 How does the Virtual DOM work?
+---
+## 🔧 How does the Virtual DOM work?
 Here’s the typical process:
 
 **1️⃣ Render the virtual DOM**
@@ -156,6 +67,7 @@ But if you first make edits in a notebook (virtual DOM) and then only change wha
 ✅ Better performance for large or frequently updating apps
 ✅ Declarative code (React decides how to update the UI)
 
+---
 # How React reconciles updates?
 Reconciliation is the process React uses to figure out what changed in the UI when the state or props change — so it knows what minimal changes to make in the real DOM.
 
