@@ -2,6 +2,7 @@
 
 React.js (usually called **React**) is an open-source JavaScript library developed by **Facebook** for building **user interfaces (UIs)** — especially for single-page applications (SPAs), where you need a fast, interactive experience in the browser. Instead of manually updating the DOM (Document Object Model), React lets you **build reusable UI components** and handles the updates efficiently when data changes. 
 
+# Q1: What makes React so powerful?
 # Why do we use React.js? 
 
 React.js has become a go-to library for building dynamic and interactive user interfaces for a bunch of compelling reasons. Here's a breakdown of the key advantages:
